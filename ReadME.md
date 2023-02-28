@@ -2,7 +2,7 @@ mern-memories-project
 
 client
 npx create-react-app ./
-npm i axios moment react-file-base64 redux react-redux redux-thunk @material-ui/core 
+npm i axios moment react-file-base64 redux react-redux redux-thunk @material-ui/core @material-ui/icons
 npm start
 
 server
