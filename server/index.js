@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
@@ -16,14 +18,25 @@ app.use('/', (req, res)=>{
     res.send('Hooo Hooo!')
 })
 
-// CONNECTION_URL = 'localhost:27017'
-
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, ()=> console.log('Server running on port: 5000'))
+const connectDB = async function(){
+    try {
+        await mongoose.connect(process.env.CONNECTION_URL)
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-// mongoose.connect(CONNECTION_URL, {userNewUrlParser: true, userUnifiedTopology: true})
-//     .then(()=> app.listen(PORT, ()=> console.log('Server running on port: 5000')))
-//     .catch((error) => console.log(error.message));
 
-// mongoose.set('useFindAndModify', false)
+connectDB()
+mongoose.connection.once('open', function(){
+    console.log('Connected to MongoDB')
+    app.listen(PORT, ()=> console.log(`Server started and running on port: ${PORT}`))
+})
+
+mongoose.connection.on('error', err => {
+    console.log(err)
+})
+
+
