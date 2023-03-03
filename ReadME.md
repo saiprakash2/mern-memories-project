@@ -1,11 +1,1 @@
-mern-memories-project
-
-client
-npx create-react-app ./
-npm i axios moment react-file-base64 redux react-redux redux-thunk @material-ui/core @material-ui/icons
-npm start
-
-server
-npm init -y
-npm i body-parser cors express mongoose nodemon
-add "type": "module" in package.json and "start": "nodemon index.js"
+This is a Complex MERN PROJECT
